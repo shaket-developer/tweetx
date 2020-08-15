@@ -6,7 +6,7 @@ import SuccessToast from '../reusable-components/toast/ToastSuccess';
 import Spinner from '../reusable-components/Spinner';
 
 const UsersList = ({reloadusers, ...props}) => {
-    const { userId, name, following, follower_user_id, profile_image, id } = props.data;
+    const { userId, name, following, follower_user_id, profile_image, id, isFollowing } = props.data;
     const [isFollowingSubmit, setIsFollowingSubmit] = useState(false); 
     const followUser = (id, name) => {
         setIsFollowingSubmit(true);
@@ -33,7 +33,15 @@ const UsersList = ({reloadusers, ...props}) => {
                         <small>Following {following}</small>
                     </div>
                     <div className="col-md-auto ml-auto">
-                        {follower_user_id == window.localStorage.getItem('userId') ? <span class="text-secondary">Following</span> : <button class="btn btn-width-md btn-primary" onClick={() => followUser(id, name)}>{isFollowingSubmit ? <Spinner /> : 'Follow'}</button>}
+                        {(isFollowing == undefined && follower_user_id == window.localStorage.getItem('userId')) ? 
+                        <span class="text-secondary">Following</span> : 
+                        isFollowing == undefined ? <button class="btn btn-width-md btn-primary" onClick={() => followUser(id, name)}>{isFollowingSubmit ? <Spinner /> : 'Follow'}</button> :
+                        null }
+                        {isFollowing == 1 ? 
+                        <span class="text-secondary">Following</span> : 
+                        isFollowing == 0 ? <button class="btn btn-width-md btn-primary" onClick={() => followUser(follower_user_id, name)}>{isFollowingSubmit ? <Spinner /> : 'Follow'}</button> :
+                        null
+                        }
                     </div>
                 </div>
             </div>

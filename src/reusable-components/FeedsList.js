@@ -23,7 +23,7 @@ const FeedsList = (props) => {
                         
                     </div>
                     <div className="feed-basic-detail flex-grow-1 d-flex">
-                        <p className="align-self-center mb-0">{feed}</p>
+                        <p className="align-self-center text-center text-md-left w-100 text mb-0">{feed}</p>
                     </div>
                     <div className="col-md-auto p-0 d-none d-md-block">
                         <div className="rotated-half-circle rotated-half-circle ml-auto">

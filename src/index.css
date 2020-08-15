@@ -81,7 +81,28 @@ code {
 .error-toast h6, .success-toast h6 {
   color:white;
 }
-#tabs{
+
+.react-tabs__tab-list {
+  border-bottom:0px !important;
+  border-top:1px solid rgba(0,0,0,.1);
+  display:flex;
+  justify-content: space-evenly;
+}
+.react-tabs__tab {
+  bottom:0px !important;
+}
+.navbar-nav a.active * {
+  color:var(--pink-color) !important;
+  font-weight:bold;
+}
+.react-tabs__tab--selected {
+  border:0px !important;
+  border-top:3px solid grey !important;
+  border-radius:0px !important;
+  bottom:1.5px !important;
+  padding:4.5px 12px
+}
+/* #tabs{
 	background: #007b5e;
     color: #eee;
 }
@@ -113,7 +134,7 @@ code {
 }
 .nav-link {
   padding: .5rem 0rem
-}
+} */
 
 .form-control.is-invalid, .was-validated .form-control:invalid {
   border-color: #dc3545 !important;
