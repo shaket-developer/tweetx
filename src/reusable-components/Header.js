@@ -17,20 +17,20 @@ const Header = () => {
                     <ul className="navbar-nav ml-auto">
                         <NavLink to="/feeds" exact activeClassName="active">
                             <li className="nav-item">
-                                <a className="nav-link">Feed <span className="sr-only">(current)</span></a>
+                                eed
                             </li>
                         </NavLink>
                         
                         <NavLink to="/users" exact activeClassName="active">
                             <li className="nav-item">
-                                <a className="nav-link">Users</a>
+                                Users
                             </li>
                         </NavLink>
 
                         
                         <NavLink to="/profile" exact activeClassName="active">
                             <li className="nav-item">
-                                <a className="nav-link">Profile</a>
+                                Profile
                             </li>
                         </NavLink>
                         
