@@ -19,7 +19,7 @@ const Users = () => {
             setUsers(() => response.data, setUsersLoading(false))
         }, error => {
             toast.dismiss();
-            ErrorToast('Error', error.msg, error.code);
+            ErrorToast('Error', error.msg);
             if(error.code == 401) {
                 history.push('login')
             }

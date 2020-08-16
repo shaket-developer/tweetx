@@ -15,7 +15,7 @@ const UsersList = ({reloadusers, ...props}) => {
             setIsFollowingSubmit(false);
             reloadusers()
         }, error => {
-            ErrorToast('Error', error);
+            ErrorToast('Error', error.msg);
         })
     }
     const loadUsers = () => {

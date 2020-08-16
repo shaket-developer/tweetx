@@ -42,7 +42,7 @@ const Profile = () => {
     }
     const showSuccess = (msg) => {
         toast.dismiss();
-        ErrorToast('Success', msg);
+        SuccessToast('Success', msg);
     }
     return (
         <div>

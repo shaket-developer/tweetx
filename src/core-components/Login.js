@@ -27,10 +27,8 @@ const Login = () => {
             history.push('feeds');
         }, error => {
             toast.dismiss();
-            ErrorToast('Error', error.msg, error.code);
-            if(error.code == 401) {
-                history.push('login')
-            }
+            ErrorToast('Error', error.msg);
+            
             setLoginForm((previousState) => ({
                 ...previousState,
                 isSubmitting: false

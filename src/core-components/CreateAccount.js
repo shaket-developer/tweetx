@@ -37,7 +37,7 @@ const CreateAccount = () => {
             }))
         }, error => {
             toast.dismiss();
-            ErrorToast('Error', error);
+            ErrorToast('Error', error.msg);
             
             setCreateAccountForm((previousState) => ({
                 ...previousState,

@@ -23,7 +23,7 @@ const Feeds = () => {
             setFeeds(() => response.data, setFeedsLoading(false))
         }, error => {
             toast.dismiss();
-            ErrorToast('Error', error.msg, error.code);
+            ErrorToast('Error', error.msg);
             if(error.code == 401) {
                 history.push('login')
             }
@@ -51,7 +51,7 @@ const Feeds = () => {
             setCreateFeedForm(initialValue)
         }, error => {
             toast.dismiss();
-            ErrorToast('Error', error.msg, error.code);
+            ErrorToast('Error', error.msg);
             if(error.code == 401) {
                 history.push('login')
             }
