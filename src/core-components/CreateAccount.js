@@ -3,7 +3,7 @@ import LoginRight from '../assets/login-right.jpg'
 import {useHistory} from 'react-router-dom';
 import apiCall from '../integration/apiCall';
 
-import {ToastContainer, Slide} from 'react-toastify';
+import {ToastContainer, Slide, toast} from 'react-toastify';
 import ErrorToast from '../reusable-components/toast/ToastError';
 import SuccessToast from '../reusable-components/toast/ToastSuccess';
 import { FaExclamation } from "react-icons/fa";
@@ -26,15 +26,17 @@ const CreateAccount = () => {
         }))
         
         let data = {};
-        data = values;
+        data = {...values};
         data['password'] = md5(values.password);
         apiCall('registeruser', values, 'POST').then((response) => {
+            toast.dismiss()
             SuccessToast('Success', response.data.message);
             setCreateAccountForm((previousState) => ({
                 ...previousState,
                 isSubmitting: false
             }))
         }, error => {
+            toast.dismiss();
             ErrorToast('Error', error);
             setCreateAccountForm((previousState) => ({
                 ...previousState,
@@ -226,8 +228,8 @@ const CreateAccount = () => {
 
 
     return (
-        <div className="d-flex vh-100">
-            <ToastContainer transition={Slide} autoClose={3000} />
+        <div className="d-flex vh-100 ">
+            <ToastContainer transition={Slide} autoClose={3000} limit={1} />
             <div className="col-sm-5 p-5">
                 <p className="logo logo-md">TweetX</p>
                 <button className="btn btn-outline-dark mb-5" onClick={goToLogin}>Login</button>
@@ -251,7 +253,7 @@ const CreateAccount = () => {
                 </form>
             </div>
 
-            <div className="col-sm-7 pl-5 pr-0 align-self-end flex-grow-1">
+            <div className="d-none d-md-block col-sm-7 pl-5 pr-0 align-self-end flex-grow-1">
                 <img src={LoginRight} className="w-100"/>
             </div>
         </div>

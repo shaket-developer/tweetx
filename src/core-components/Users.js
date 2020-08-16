@@ -3,7 +3,7 @@ import Header from '../reusable-components/Header';
 //import data from '../data/users.js';
 import UsersList from '../reusable-components/UsersList';
 import apiCall from '../integration/apiCall';
-import {ToastContainer, Slide} from 'react-toastify';
+import {ToastContainer, Slide, toast} from 'react-toastify';
 import ErrorToast from '../reusable-components/toast/ToastError'
 import SuccessToast from '../reusable-components/toast/ToastSuccess';
 import Spinner from '../reusable-components/Spinner';
@@ -16,6 +16,7 @@ const Users = () => {
         apiCall('users', {}, 'GET').then(response => {
             setUsers(() => response.data, setUsersLoading(false))
         }, error => {
+            toast.dismiss();
             ErrorToast('Error', error);
         })
     }

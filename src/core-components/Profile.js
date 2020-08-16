@@ -7,7 +7,7 @@ import ProfilePost from '../reusable-components/ProfilePost';
 import ProfileFollowers from '../reusable-components/ProfileFollowers';
 import ProfileFollowing from '../reusable-components/ProfileFollowing';
 
-import {ToastContainer, Slide} from 'react-toastify';
+import {ToastContainer, Slide, toast} from 'react-toastify';
 import ErrorToast from '../reusable-components/toast/ToastError'
 import SuccessToast from '../reusable-components/toast/ToastSuccess';
 
@@ -31,9 +31,11 @@ const Profile = () => {
         })
     }, []);
     const showError = (msg) => {
+        toast.dismiss();
         ErrorToast('Error', msg);
     }
     const showSuccess = (msg) => {
+        toast.dismiss();
         ErrorToast('Success', msg);
     }
     return (

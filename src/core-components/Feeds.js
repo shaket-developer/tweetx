@@ -4,7 +4,7 @@ import data from '../data/feeds.js';
 import FeedsList from '../reusable-components/FeedsList';
 import apiCall from '../integration/apiCall';
 
-import {ToastContainer, Slide} from 'react-toastify';
+import {ToastContainer, Slide, toast} from 'react-toastify';
 import ErrorToast from '../reusable-components/toast/ToastError'
 import SuccessToast from '../reusable-components/toast/ToastSuccess';
 import Spinner from '../reusable-components/Spinner';
@@ -21,6 +21,7 @@ const Feeds = () => {
         apiCall('feeduser', {}, 'GET').then(response => {
             setFeeds(() => response.data, setFeedsLoading(false))
         }, error => {
+            toast.dismiss();
             ErrorToast('Error', error);
         })
     }, [])
@@ -36,6 +37,7 @@ const Feeds = () => {
             isSubmitting: true
         }))
         apiCall('createfeed', values, 'POST').then(response => {
+            toast.dismiss();
             SuccessToast('Success', response.data.message);
             setIsFeeding(false);
             setCreateFeedForm((previousState) => ({
@@ -44,6 +46,7 @@ const Feeds = () => {
             }))
             setCreateFeedForm(initialValue)
         }, error => {
+            toast.dismiss();
             ErrorToast('Error', error);
             setCreateFeedForm((previousState) => ({
                 ...previousState,

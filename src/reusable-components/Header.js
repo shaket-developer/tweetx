@@ -4,41 +4,24 @@ import { AnimatedRoute } from 'react-router-transition';
 import Feeds from '../core-components/Feeds';
 import Users from '../core-components/Feeds';
 import Profile from '../core-components/Profile';
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import { Container } from 'react-bootstrap';
 const Header = () => {
     return (
-
-        <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
-            <div className="container">
-                <a className="logo logo-md">TweetX</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ml-auto">
-                        <NavLink to="/feeds" exact activeClassName="active">
-                            <li className="nav-item">
-                                eed
-                            </li>
-                        </NavLink>
-                        
-                        <NavLink to="/users" exact activeClassName="active">
-                            <li className="nav-item">
-                                Users
-                            </li>
-                        </NavLink>
-
-                        
-                        <NavLink to="/profile" exact activeClassName="active">
-                            <li className="nav-item">
-                                Profile
-                            </li>
-                        </NavLink>
-                        
-                    </ul>
-                </div>
-            </div>
-
-        </nav>
+        <Navbar collapseOnSelect bg="light" variant="light" expand="lg" className="shadow">
+            <Container>
+            <Navbar.Brand>TweetX</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="ml-auto">
+                    <NavLink to="/feeds" exact activeClassName="active"><Nav.Link>Feeds</Nav.Link></NavLink>
+                    <NavLink to="/users" exact activeClassName="active"><Nav.Link>Users</Nav.Link></NavLink>
+                    <NavLink to="/profile" exact activeClassName="active"><Nav.Link>Profile</Nav.Link></NavLink>
+                </Nav>
+            </Navbar.Collapse>
+            </Container>
+        </Navbar>
     )
 }
 

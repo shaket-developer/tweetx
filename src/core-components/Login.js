@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import LoginRight from '../assets/login-right.jpg'
 import {useHistory} from 'react-router-dom';
 import apiCall from '../integration/apiCall';
-import {ToastContainer, Slide} from 'react-toastify';
+import {ToastContainer, Slide, toast} from 'react-toastify';
 import ErrorToast from '../reusable-components/toast/ToastError';
 import SuccessToast from '../reusable-components/toast/ToastSuccess';
 import { FaExclamation } from "react-icons/fa";
@@ -26,6 +26,7 @@ const Login = () => {
             window.localStorage.setItem('userName', response.data.userData['name']);
             history.push('feeds');
         }, error => {
+            toast.dismiss();
             ErrorToast('Error', error);
             setLoginForm((previousState) => ({
                 ...previousState,
@@ -183,7 +184,7 @@ const Login = () => {
                 </form>
             </div>
 
-            <div className="col-sm-7 pl-5 pr-0 align-self-end flex-grow-1">
+            <div className="d-none d-md-block col-sm-7 pl-5 pr-0 align-self-end flex-grow-1">
                 <img src={LoginRight} className="w-100"/>
             </div>
         </div>
