@@ -45,7 +45,7 @@ const Profile = () => {
             <div className="page-body">
                 {!myProfileLoading && <div className="profile-info d-md-flex align-items-center">
                     <div className="col-md-auto text-center text-md-left">
-                        <img src={profileBasic.profile_large_image} class="rounded-circle" />
+                        <img src={profileBasic.profile_large_image} className="rounded-circle" />
                     </div>
                     <div className="col-md-auto text-center text-md-left">
                         <h3>{profileBasic.name}</h3>
@@ -60,7 +60,7 @@ const Profile = () => {
                         </span>
                     </div>
                 </div>}
-                <div class="main-section">
+                <div className="main-section">
                     <Tabs>
                         <TabList>
                             <Tab>Post</Tab>

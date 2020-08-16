@@ -29,7 +29,7 @@ const Users = () => {
             <Header />
             <ToastContainer transition={Slide} autoClose={3000} />
             <div className="page-body">
-                <div class="main-section">
+                <div className="main-section">
                 {
                    usersLoading && <Spinner  color="bg-dark" />
                 }

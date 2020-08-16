@@ -196,7 +196,7 @@ const Feeds = () => {
                         
                     </div>)
                 }
-                <div class="main-section">
+                <div className="main-section">
                     
                     {
                       feedsLoading && <div className="text-center"><Spinner color="bg-dark" /></div>

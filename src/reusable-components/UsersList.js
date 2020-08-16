@@ -24,7 +24,7 @@ const UsersList = ({reloadusers, ...props}) => {
     return (
         <>
             <div className="user-detail pb-4 pt-4">
-                <div class="row align-items-center text-center text-md-left">
+                <div className="row align-items-center text-center text-md-left">
                     <div className="user-image col-md-auto">
                         <img src={profile_image} className="rounded-circle" />
                     </div>
@@ -34,12 +34,12 @@ const UsersList = ({reloadusers, ...props}) => {
                     </div>
                     <div className="col-md-auto ml-auto">
                         {(isFollowing == undefined && follower_user_id == window.localStorage.getItem('userId')) ? 
-                        <span class="text-secondary">Following</span> : 
-                        isFollowing == undefined ? <button class="btn btn-width-md btn-primary" onClick={() => followUser(id, name)}>{isFollowingSubmit ? <Spinner /> : 'Follow'}</button> :
+                        <span className="text-secondary">Following</span> : 
+                        isFollowing == undefined ? <button className="btn btn-width-md btn-primary" onClick={() => followUser(id, name)}>{isFollowingSubmit ? <Spinner /> : 'Follow'}</button> :
                         null }
                         {isFollowing == 1 ? 
-                        <span class="text-secondary">Following</span> : 
-                        isFollowing == 0 ? <button class="btn btn-width-md btn-primary" onClick={() => followUser(follower_user_id, name)}>{isFollowingSubmit ? <Spinner /> : 'Follow'}</button> :
+                        <span className="text-secondary">Following</span> : 
+                        isFollowing == 0 ? <button className="btn btn-width-md btn-primary" onClick={() => followUser(follower_user_id, name)}>{isFollowingSubmit ? <Spinner /> : 'Follow'}</button> :
                         null
                         }
                     </div>

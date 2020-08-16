@@ -91,7 +91,7 @@ code {
 .react-tabs__tab {
   bottom:0px !important;
 }
-.navbar-nav a.active * {
+.navbar-nav a[aria-current] {
   color:var(--pink-color) !important;
   font-weight:bold;
 }

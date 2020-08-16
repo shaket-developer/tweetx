@@ -19,7 +19,7 @@ const ProfilePost = ({showErrorToast, showSuccessToast, profileData}) => {
     }, [])
     return (
         <>
-        <div class="main-section">
+        <div className="main-section">
         { myPostsLoading && <Spinner color="bg-dark" /> }
         { !myPostsLoading && profileFeeds.length == 0 ? <h2 className="text-center text-light">No Feeds Found</h2> : null }
         {

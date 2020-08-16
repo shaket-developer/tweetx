@@ -21,7 +21,7 @@ const ProfileFollowers = ({showErrorToast, showSuccessToast}) => {
     }
     return (
         <>
-        <div class="main-section">
+        <div className="main-section">
         { myFollowersLoading && <Spinner color="bg-dark" /> }
         { !myFollowersLoading && profileFollowers.length == 0 ? <h2 className="text-center text-light">No Followers Found</h2> : null }
         {

@@ -15,9 +15,9 @@ const Header = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <NavLink to="/feeds" exact activeClassName="active"><Nav.Link>Feeds</Nav.Link></NavLink>
-                    <NavLink to="/users" exact activeClassName="active"><Nav.Link>Users</Nav.Link></NavLink>
-                    <NavLink to="/profile" exact activeClassName="active"><Nav.Link>Profile</Nav.Link></NavLink>
+                    <NavLink to="/feeds" className="nav-link" exact activeClassName="active">Feeds</NavLink>
+                    <NavLink to="/users" className="nav-link" exact activeClassName="active">Users</NavLink>
+                    <NavLink to="/profile" className="nav-link" exact activeClassName="active">Profile</NavLink>
                 </Nav>
             </Navbar.Collapse>
             </Container>
