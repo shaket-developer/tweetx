@@ -10,6 +10,7 @@ import Spinner from '../reusable-components/Spinner';
 var md5 = require('md5');
 
 const Login = () => {
+    window.localStorage.clear();
     var regex = new RegExp("^[A-Za-z0-9? ,.]+$");
     const userlogin = (event, th) => {
         event.preventDefault();
