@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import data from '../data/profileFeeds';
 import FeedsList from './FeedsList';
-import apiCall from '../integration/apiCall';
+import ApiCall from '../integration/ApiCall';
 import Spinner from './Spinner';
 const ProfilePost = ({showErrorToast, showSuccessToast, profileData}) => {
     const {name, profile_image} = profileData;
@@ -9,7 +9,7 @@ const ProfilePost = ({showErrorToast, showSuccessToast, profileData}) => {
     const [myPostsLoading, setMyPostsLoading] = useState(true);
     useEffect(()=> {
         setMyPostsLoading(true)
-        apiCall('/getMyFeeds', {}, "GET").then(response => {
+        ApiCall('/getMyFeeds', {}, "GET").then(response => {
             setMyPostsLoading(false);
             setProfileFeeds(response.data)
         }, (e) => {

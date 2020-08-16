@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import LoginRight from '../assets/login-right.jpg'
 import {useHistory} from 'react-router-dom';
-import apiCall from '../integration/apiCall';
+import ApiCall from '../integration/ApiCall';
 
 import {ToastContainer, Slide, toast} from 'react-toastify';
 import ErrorToast from '../reusable-components/toast/ToastError';
@@ -28,7 +28,7 @@ const CreateAccount = () => {
         let data = {};
         data = {...values};
         data['password'] = md5(values.password);
-        apiCall('registeruser', values, 'POST').then((response) => {
+        ApiCall('registeruser', values, 'POST').then((response) => {
             toast.dismiss()
             SuccessToast('Success', response.data.message);
             setCreateAccountForm((previousState) => ({
@@ -38,6 +38,7 @@ const CreateAccount = () => {
         }, error => {
             toast.dismiss();
             ErrorToast('Error', error);
+            
             setCreateAccountForm((previousState) => ({
                 ...previousState,
                 isSubmitting: false

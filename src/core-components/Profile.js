@@ -14,25 +14,31 @@ import SuccessToast from '../reusable-components/toast/ToastSuccess';
 import Spinner from '../reusable-components/Spinner';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import apiCall from '../integration/apiCall';
+import ApiCall from '../integration/ApiCall';
+import { useHistory } from 'react-router-dom';
 
 
 const Profile = () => {
     const [key, setKey] = useState('post');
     const [profileBasic, setProfileBasic] = useState({});
     const [myProfileLoading, setMyProfileLoading] = useState(true);
+    const history = useHistory();
     useEffect(() => {
-        apiCall('/getMyProfile', {}, "GET").then(response => {
+        ApiCall('/getMyProfile', {}, "GET").then(response => {
             setMyProfileLoading(false);
             setProfileBasic(response.data)
         }).catch(error => {
-            setMyProfileLoading(false);
             showError(error);
+            setMyProfileLoading(false);
+            
         })
     }, []);
-    const showError = (msg) => {
+    const showError = (error) => {
         toast.dismiss();
-        ErrorToast('Error', msg);
+        ErrorToast('Error', error.msg);
+        if(error.code == 401) {
+            history.push('login')
+        }
     }
     const showSuccess = (msg) => {
         toast.dismiss();

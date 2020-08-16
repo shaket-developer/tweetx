@@ -2,12 +2,13 @@ import React, {useEffect, useState} from 'react';
 import Header from '../reusable-components/Header';
 import data from '../data/feeds.js';
 import FeedsList from '../reusable-components/FeedsList';
-import apiCall from '../integration/apiCall';
+import ApiCall from '../integration/ApiCall';
 
 import {ToastContainer, Slide, toast} from 'react-toastify';
 import ErrorToast from '../reusable-components/toast/ToastError'
 import SuccessToast from '../reusable-components/toast/ToastSuccess';
 import Spinner from '../reusable-components/Spinner';
+import { useHistory } from 'react-router-dom';
 
 const Feeds = () => {
     var regex = new RegExp("^[A-Za-z0-9? ,.]+$");
@@ -15,14 +16,17 @@ const Feeds = () => {
     const [feeds, setFeeds] = useState([]);
     const [isFeeding, setIsFeeding] = useState(false);
     const [myFeed, setMyFeed] = useState("");
-
+    const history = useHistory();
     useEffect(() => {
         setFeedsLoading(true)
-        apiCall('feeduser', {}, 'GET').then(response => {
+        ApiCall('feeduser', {}, 'GET').then(response => {
             setFeeds(() => response.data, setFeedsLoading(false))
         }, error => {
             toast.dismiss();
-            ErrorToast('Error', error);
+            ErrorToast('Error', error.msg, error.code);
+            if(error.code == 401) {
+                history.push('login')
+            }
         })
     }, [])
     
@@ -36,7 +40,7 @@ const Feeds = () => {
             ...previousState,
             isSubmitting: true
         }))
-        apiCall('createfeed', values, 'POST').then(response => {
+        ApiCall('createfeed', values, 'POST').then(response => {
             toast.dismiss();
             SuccessToast('Success', response.data.message);
             setIsFeeding(false);
@@ -47,7 +51,10 @@ const Feeds = () => {
             setCreateFeedForm(initialValue)
         }, error => {
             toast.dismiss();
-            ErrorToast('Error', error);
+            ErrorToast('Error', error.msg, error.code);
+            if(error.code == 401) {
+                history.push('login')
+            }
             setCreateFeedForm((previousState) => ({
                 ...previousState,
                 isSubmitting: false

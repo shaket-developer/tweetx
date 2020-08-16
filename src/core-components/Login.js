@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import LoginRight from '../assets/login-right.jpg'
 import {useHistory} from 'react-router-dom';
-import apiCall from '../integration/apiCall';
+import ApiCall from '../integration/ApiCall';
 import {ToastContainer, Slide, toast} from 'react-toastify';
 import ErrorToast from '../reusable-components/toast/ToastError';
 import SuccessToast from '../reusable-components/toast/ToastSuccess';
@@ -20,14 +20,17 @@ const Login = () => {
         let data = {};
         data = th;
         data['password'] = md5(th.password);
-        apiCall('loginuser', data, 'POST').then(response => {
+        ApiCall('loginuser', data, 'POST').then(response => {
             
             window.localStorage.setItem('userId', response.data.userData['id']);
             window.localStorage.setItem('userName', response.data.userData['name']);
             history.push('feeds');
         }, error => {
             toast.dismiss();
-            ErrorToast('Error', error);
+            ErrorToast('Error', error.msg, error.code);
+            if(error.code == 401) {
+                history.push('login')
+            }
             setLoginForm((previousState) => ({
                 ...previousState,
                 isSubmitting: false

@@ -6,6 +6,7 @@ import Users from '../core-components/Users';
 import Feeds from '../core-components/Feeds';
 import Profile from '../core-components/Profile';
 import { AnimatedSwitch } from 'react-router-transition';
+import ApiCall from '../integration/ApiCall';
 
 const RoutePath = () => {
     return (
@@ -15,6 +16,7 @@ const RoutePath = () => {
             <Route path="/users" component={Users} ></Route>
             <Route path="/feeds" component={Feeds} ></Route>
             <Route path="/profile" component={Profile} ></Route>
+            <Route path="/apicall" component={ApiCall} ></Route>
         </Router>
     )
 }

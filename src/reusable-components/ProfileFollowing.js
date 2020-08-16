@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import UsersList from './UsersList';
-import apiCall from '../integration/apiCall';
+import ApiCall from '../integration/ApiCall';
 import Spinner from './Spinner';
 const ProfileFollowing = ({showErrorToast, showSuccessToast}) => {
     const [profileFollowings, setProfileFollowings] = useState([]);
@@ -10,7 +10,7 @@ const ProfileFollowing = ({showErrorToast, showSuccessToast}) => {
     }, []);
     const getFollowings = () => {
         setMyFollowingsLoading(true);
-        apiCall('/getMyFollowings', {}, "GET").then(response => {
+        ApiCall('/getMyFollowings', {}, "GET").then(response => {
             setProfileFollowings(response.data);
             setMyFollowingsLoading(false);
         }, (e) => {

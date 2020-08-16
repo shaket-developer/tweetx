@@ -1,8 +1,9 @@
+import React, {useState, useEffect} from 'react';
 import baseUrl from './baseUrl';
 import qs from 'qs';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
-
-const apiCall = (url, data, requestMethod, callback) => {
+const ApiCall = (url, data, requestMethod, callback) => {
     const header = {
         headers: {Authorization:"Bearer "+window.localStorage.getItem('access_token')}
     }
@@ -15,12 +16,15 @@ const apiCall = (url, data, requestMethod, callback) => {
             }
             resolve(response);
         }, error => {
-            console.log(error.status)
-            console.log(error.response)
-            if(!error.response || !error.response.data) {
+            
+            if(error.response.data.error) {
+                let errorData = {
+                    msg: error.response.data.error,
+                    code: error.response.status
+                }
+                reject(errorData)
+            } else if(!error.response || !error.response.data) {
                 reject("Unable to connect to server");
-            } else if(error.response.data.error) {
-                reject(error.response.data.error)
             } else {
                 reject("Internal Server Error")
             }
@@ -28,13 +32,18 @@ const apiCall = (url, data, requestMethod, callback) => {
         })
         }
         if(requestMethod == 'GET') {
+
             baseUrl.get(url, header).then((response) => {
                 resolve(response);
             }, error => {
-                if(!error.status || !error.response || !error.response.data) {
+                if(error.response.data.error) {
+                    let errorData = {
+                        msg: error.response.data.error,
+                        code: error.response.status
+                    }
+                    reject(errorData)
+                } else if(!error.status || !error.response || !error.response.data) {
                     reject("Unable to connect to server");
-                } else if(error.response.data.error) {
-                    reject(error.response.data.error)
                 } else {
                     reject("Internal Server Error")
                 }
@@ -70,4 +79,4 @@ const apiCall = (url, data, requestMethod, callback) => {
     
 }
 
-export default apiCall;
+export default ApiCall;

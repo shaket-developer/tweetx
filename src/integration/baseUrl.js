@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseUrl = axios.create({
-    baseURL:'http://localhost/tweetx-backend/'
+    baseURL:'http://shaketshah.in/'
 })
 
 export default baseUrl;

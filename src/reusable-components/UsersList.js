@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import apiCall from '../integration/apiCall';
+import ApiCall from '../integration/ApiCall';
 import {ToastContainer, Slide} from 'react-toastify';
 import ErrorToast from '../reusable-components/toast/ToastError';
 import SuccessToast from '../reusable-components/toast/ToastSuccess';
@@ -10,7 +10,7 @@ const UsersList = ({reloadusers, ...props}) => {
     const [isFollowingSubmit, setIsFollowingSubmit] = useState(false); 
     const followUser = (id, name) => {
         setIsFollowingSubmit(true);
-        apiCall('followUser', {"userId": id, "userName": name}, 'POST').then(response => {
+        ApiCall('followUser', {"userId": id, "userName": name}, 'POST').then(response => {
             SuccessToast('Success', response.data.message);
             setIsFollowingSubmit(false);
             reloadusers()
