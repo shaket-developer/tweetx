@@ -13,6 +13,7 @@ import Spinner from '../reusable-components/Spinner';
 var md5 = require('md5');
 
 const CreateAccount = () => {
+    window.localStorage.clear();
     var regex = new RegExp("^[A-Za-z0-9? ,.]+$");
     const history = useHistory();
     const goToLogin = () => {
