@@ -27,8 +27,9 @@ const CreateAccount = () => {
         
         let data = {};
         data = {...values};
+        debugger
         data['password'] = md5(values.password);
-        ApiCall('registeruser', values, 'POST').then((response) => {
+        ApiCall('registeruser', data, 'POST').then((response) => {
             toast.dismiss()
             SuccessToast('Success', response.data.message);
             setCreateAccountForm((previousState) => ({
@@ -212,18 +213,13 @@ const CreateAccount = () => {
     }
 
     useEffect(() => {
-        let timeout;
-        if(timeout) {
-            clearTimeout(timeout)
-        }
-        timeout = setTimeout(() => {
-            setCreateAccountForm((previousState) => ({...previousState, isError: false}));
-            for(let key in createAccountForm.errors) {
-                if(createAccountForm.errors[key] == true) {
-                    setCreateAccountForm((previousState) => ({...previousState, isError: true}));
-                }
+        
+        setCreateAccountForm((previousState) => ({...previousState, isError: false}));
+        for(let key in createAccountForm.errors) {
+            if(createAccountForm.errors[key] == true) {
+                setCreateAccountForm((previousState) => ({...previousState, isError: true}));
             }
-        }, 1000)
+        }
         
     }, [createAccountForm.values])
 

@@ -39,7 +39,7 @@ const Users = () => {
                    usersLoading && <Spinner  color="bg-dark" />
                 }
                 {
-                    !usersLoading && users.length == 0 ? <h3 className="text-center">No Users</h3> : users.map((value) => {
+                    !usersLoading && users.length == 0 ? <h3 className="text-center text-light">No Users Found</h3> : users.map((value) => {
                         return <UsersList data={value} reloadusers = {getUsers} key={value.id}/>
                     })
                 }

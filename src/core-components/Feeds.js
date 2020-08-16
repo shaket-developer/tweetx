@@ -209,7 +209,7 @@ const Feeds = () => {
                       feedsLoading && <div className="text-center"><Spinner color="bg-dark" /></div>
                     }
                     {
-                      !feedsLoading && feeds.length == 0 ? <h3 className="text-center">No Feeds</h3> : feeds.map((value) => {
+                      !feedsLoading && feeds.length == 0 ? <h3 className="text-center text-light">No Feeds Found</h3> : feeds.map((value) => {
                         return <FeedsList data={value} key={value.id} />
                       })
                     }
